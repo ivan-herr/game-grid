@@ -13,6 +13,8 @@ public class LinkedList {
         newNode.xPosition = x;
         newNode.yPosition = y;
 
+        newNode.nextNode = this.headNode;
+
         this.headNode = newNode;
     }
 

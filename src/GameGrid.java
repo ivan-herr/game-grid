@@ -7,6 +7,7 @@ public class GameGrid {
 
         SecureRandom oRandom = new SecureRandom();
         Scanner oScanner = new Scanner(System.in);
+        LinkedList oLinkedList = new LinkedList();
 
         int iWallChance = 30; // Used to determine chance for there to be a "1".
 
@@ -49,6 +50,8 @@ public class GameGrid {
                 iUserCol++;
             }
 
+            oLinkedList.addNode(iUserRow, iUserCol);
+
             // If there is a "1" in space, player loses.
             // If there is a "0" in space, player continues.
             // Player wins after they hit "0" in last row or column.
@@ -63,6 +66,16 @@ public class GameGrid {
             }
         }
 
+        int iMoveCount = 0;
+        Node oTempNode = oLinkedList.removeNode();
+
+        while (oTempNode != null) {
+            aiGrid[oTempNode.xPosition][oTempNode.yPosition] = 5;
+
+            iMoveCount++;
+            oTempNode = oLinkedList.removeNode();
+        }
+
         // Prints the grid after the game is over.
         // "X" marks where player was at.
         for(int y = 0; y < aiGrid[0].length; y++){
@@ -74,6 +87,34 @@ public class GameGrid {
                 }
             }
             System.out.println();
+        }
+
+        System.out.println("Total player moves: " + iMoveCount);
+
+        // Added as per instructions of the assignment.
+        LinkedList oTestLL = oLinkedList;
+        try {
+            oTestLL.addNode(124,0);
+            System.out.println("***test-add-" + oTestLL.headNode.xPosition);
+        } catch(Exception ex) {
+            System.out.println("###test-add");
+        }
+
+        try {
+            if(oTestLL.removeNode().xPosition == 124) {
+                System.out.println("***test-remove");
+            } else {
+                throw new Exception();
+            }
+        } catch(Exception ex) {
+            System.out.println("###test-remove");
+        }
+
+        try {
+            int i = oTestLL.removeNode().xPosition;
+            System.out.println("###test-empty");
+        } catch(Exception ex) {
+            System.out.println("***test-empty");
         }
     }
 }
