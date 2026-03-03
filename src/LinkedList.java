@@ -16,8 +16,21 @@ public class LinkedList {
         this.headNode = newNode;
     }
 
-    public void removeNode(){
+    /**
+     * Method to remove the Node from the LinkedList.
+     * Uses a tempNode to hold the reference of current coordinates of headNode.
+     * Sets headNode's coordinates to the nextNode.
+     * @return tempNode Node class that contains the original coordinates of headNode.
+     */
+    public Node removeNode(){
+        if (this.headNode == null) {
+            return null;
+        }
 
+        Node tempNode = this.headNode;
+        this.headNode = this.headNode.nextNode;
+
+        return tempNode;
     }
 
     // --- Getter ---
