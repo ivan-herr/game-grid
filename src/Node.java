@@ -1,5 +1,5 @@
 public class Node {
-    private int xPosition;
-    private int yPosition;
-    private Node nextNode;
+    int xPosition;
+    int yPosition;
+    Node nextNode;
 }
